@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/leo/Desktop/tensorflow/modelSRstroe/tmp/model.ckpt"
+all_model_checkpoint_paths: "/Users/leo/Desktop/tensorflow/modelSRstroe/tmp/model.ckpt"
