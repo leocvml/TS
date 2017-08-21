@@ -10,7 +10,7 @@ mnist = input_data.read_data_sets("MNIST_data", one_hot=True)
 
 # Parameters
 learning_rate = 0.01
-training_epochs = 2000
+training_epochs = 2
 batch_size = 256
 display_step = 1
 examples_to_show = 10
@@ -71,12 +71,12 @@ def decoder(ori_img,code):
     w_dc1 = tf.Variable(tf.random_normal([5,5,32,64]))
     b_dc1 = tf.Variable(tf.random_normal([1]))
     output_shape_d_conv1 = tf.stack([tf.shape(ori_img)[0], 14, 14, 32])
-    h_d_conv1 = tf.nn.relu(deconv2d(code,w_dc1,output_shape_d_conv1))
+    h_d_conv1 = tf.nn.sigmoid(deconv2d(code,w_dc1,output_shape_d_conv1))
 
     w_dc2 = tf.Variable(tf.random_normal([5,5,1,32]))
     b_dc2 = tf.Variable(tf.random_normal([32]))
     output_shape_d_conv2 = tf.stack([tf.shape(ori_img)[0], 28, 28, 1])
-    h_d_conv2 = tf.nn.relu(deconv2d(h_d_conv1,w_dc2,output_shape_d_conv2))
+    h_d_conv2 = tf.nn.sigmoid(deconv2d(h_d_conv1,w_dc2,output_shape_d_conv2))
 
     print("reconstruct layer shape : %s" % h_d_conv2.get_shape())
     return h_d_conv2
@@ -128,8 +128,8 @@ with tf.Session() as sess:
     # Compare original images with their reconstructions
     f, a = plt.subplots(2, 10, figsize=(10, 2))
     for i in range(examples_to_show):
-        a[0][i].imshow(np.reshape(mnist.test.images[i], (28, 28)))
-        a[1][i].imshow(np.reshape(encode_decode[i], (28, 28)))
+        a[0][i].imshow(np.reshape(mnist.test.images[i], (28, 28)) ,cmap='gray')
+        a[1][i].imshow(np.reshape(encode_decode[i], (28, 28)),cmap = 'gray')
     f.show()
     '''
     plt.draw()
