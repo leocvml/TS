@@ -1,0 +1,22 @@
+
+ID:horng
+pwd:8212hong
+
+
+
+run TensorFlow with Virtualenv and cuda
+
+so first run this commend:
+	source ~/tensorflow/bin/activate
+
+Test DEEPMNIST:
+	 python Deepmnist.py
+
+
+new py 
+	nano  {Name}.py   
+
+
+
+exit:
+	deactivate
